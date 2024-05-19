@@ -35,6 +35,10 @@ object SharedPrefsHelper {
     }
 
     fun has(key: String): Boolean {
+        if (sharedPreferences == null){
+            sharedPreferences =
+            App.getInstance().getSharedPreferences("shared_doc", Context.MODE_PRIVATE)
+        }
         return sharedPreferences.contains(key)
     }
 

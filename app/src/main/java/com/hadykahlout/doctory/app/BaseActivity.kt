@@ -36,7 +36,7 @@ open class BaseActivity : AppCompatActivity() {
             }
 
         } else {
-            dLocale = Locale("ar")
+            dLocale = Locale("en")
             Locale.setDefault(dLocale!!)
             val configuration = Configuration()
             configuration.setLocale(dLocale)

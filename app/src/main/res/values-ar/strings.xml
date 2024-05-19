@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Doctory</string>
+
+    <string name="warning">تحذير</string>
+    <string name="internet_error">أنت غير متصل بالانتزنت!! الرجاء التأكد من اتصال الموبايل بشبكة انترنت جيدة</string>
+    <string name="ok">حسنا</string>
+    <string name="cancel">الغاء</string>
+    <string name="get_started">Get Started</string>
+</resources>

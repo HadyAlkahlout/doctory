@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">doctory</string>
+    <string name="app_name">Doctory</string>
+
+    <string name="warning">Warning</string>
+    <string name="internet_error">You are\'nt connect with internet!! Please make sure your mobile connect with stable internet</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="get_started">Get Started</string>
 </resources>
