@@ -38,7 +38,7 @@ class WelcomingActivity : AppCompatActivity() {
         }
 
         binding.btnStart.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
 

@@ -6,4 +6,24 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="get_started">Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="sign_in_to_your_account">Sign In to your account</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="type_your_email">Type your email</string>
+    <string name="type_your_password">Type your password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_account">Don’t have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account_and_enjoy_all_services">Create account and enjoy all services</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
+    <string name="type_your_username">Type your username</string>
+    <string name="terms">I agree to the company <b>Term of Service</b> and <b>Privacy Policy</b></string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="continue_btn">Continue</string>
+    <string name="verify_code">Verify Code</string>
+    <string name="email_verify">Please enter the code we just sent to email</string>
+    <string name="resend_code_in">Resend code in</string>
 </resources>
