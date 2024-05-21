@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
         android:paddingVertical="24dp"
-        tools:context=".ui.fragment.LoginFragment">
+        tools:context=".ui.fragment.auth.login.LoginFragment">
 
         <TextView
             android:layout_width="wrap_content"

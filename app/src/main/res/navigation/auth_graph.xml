@@ -7,25 +7,58 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.LoginFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mobileFragment"
+            app:destination="@id/mobileFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotFragment"
+            app:destination="@id/forgotFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.SignUpFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.sign_up.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_verifyFragment"
             app:destination="@id/verifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifyFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.verify.VerifyFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.verify.VerifyFragment"
         android:label="VerifyFragment"
-        tools:layout="@layout/fragment_verify"  />
+        tools:layout="@layout/fragment_verify" >
+        <action
+            android:id="@+id/action_verifyFragment_to_newPassFragment"
+            app:destination="@id/newPassFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mobileFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.mobile.MobileFragment"
+        android:label="MobileFragment"
+        tools:layout="@layout/fragment_mobile">
+        <action
+            android:id="@+id/action_mobileFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.forgot.ForgotFragment"
+        android:label="ForgotFragment"
+        tools:layout="@layout/fragment_forgot" >
+        <action
+            android:id="@+id/action_forgotFragment_to_mobileFragment"
+            app:destination="@id/mobileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPassFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.auth.new_pass.NewPassFragment"
+        android:label="fragment_new_pass"
+        tools:layout="@layout/fragment_new_pass" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment
+package com.hadykahlout.doctory.ui.fragment.auth.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.tvForgot.setOnClickListener {
-            Snackbar.make(requireView(), "Go Forgot Password", Snackbar.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_loginFragment_to_forgotFragment)
         }
 
         binding.tvSignUp.setOnClickListener {
@@ -49,7 +49,10 @@ class LoginFragment : Fragment() {
         } else if (binding.etPassword.text!!.isEmpty()) {
             binding.passwordLayout.error = "Required!!"
         } else {
-            Snackbar.make(requireView(), "Go Sign In", Snackbar.LENGTH_SHORT).show()
+            val bundle = Bundle()
+            bundle.putBoolean("isResetPass", false)
+            bundle.putBoolean("isEmail", false)
+            findNavController().navigate(R.id.action_loginFragment_to_mobileFragment, bundle)
         }
     }
 

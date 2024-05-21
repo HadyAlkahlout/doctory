@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        tools:context=".ui.fragment.SignUpFragment">
+        tools:context=".ui.fragment.auth.sign_up.SignUpFragment">
 
         <LinearLayout
             android:layout_width="match_parent"

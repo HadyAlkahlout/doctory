@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment
+package com.hadykahlout.doctory.ui.fragment.auth.sign_up
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -51,11 +51,18 @@ class SignUpFragment : Fragment() {
         } else if (binding.etPassword.text!!.isEmpty()) {
             binding.passwordLayout.error = "Required!!"
         } else if (!(binding.cbTerms.isChecked)) {
-            Snackbar.make(requireView(), "You must agree to our terms of service and privacy policy to make an account!!", Snackbar.LENGTH_SHORT)
+            Snackbar.make(
+                requireView(),
+                "You must agree to our terms of service and privacy policy to make an account!!",
+                Snackbar.LENGTH_SHORT
+            )
                 .setTextColor(requireActivity().getColor(R.color.required))
                 .show()
         } else {
-            findNavController().navigate(R.id.action_signUpFragment_to_verifyFragment)
+            val bundle = Bundle()
+            bundle.putString("emailID", binding.etEmail.text!!.trim().toString())
+            bundle.putBoolean("isMobile", false)
+            findNavController().navigate(R.id.action_signUpFragment_to_verifyFragment, bundle)
         }
     }
 
