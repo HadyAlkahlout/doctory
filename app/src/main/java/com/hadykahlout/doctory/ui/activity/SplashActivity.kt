@@ -28,7 +28,8 @@ class SplashActivity : BaseActivity() {
                 if (SharedPrefsHelper.has(IS_FIRST_TIME)){
                     startActivity(Intent(this.baseContext, MainActivity::class.java))
                 } else {
-                    startActivity(Intent(this.baseContext, WelcomingActivity::class.java))
+                    startActivity(Intent(this.baseContext, MainActivity::class.java))
+//                    startActivity(Intent(this.baseContext, WelcomingActivity::class.java))
                 }
                 finish()
             }else{

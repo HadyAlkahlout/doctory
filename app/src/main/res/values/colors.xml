@@ -8,4 +8,7 @@
     <color name="gray">#6B6B6B</color>
     <color name="required">#FF4141</color>
     <color name="colorDone">#4CAF50</color>
+
+    <color name="colorScreen">#F8F8FB</color>
+
 </resources>
