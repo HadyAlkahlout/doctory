@@ -55,4 +55,10 @@
     <string name="today_patients">Today Patients</string>
     <string name="total_patient_in">Total Patient in</string>
     <string name="see_my_schedule">See My Schedule</string>
+    <string name="you_have_no_notification">You have no notification</string>
+    <string name="booking_appointment">Booking Appointment</string>
+    <string name="notification">Notification</string>
+    <string name="see_all">See All</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
 </resources>
