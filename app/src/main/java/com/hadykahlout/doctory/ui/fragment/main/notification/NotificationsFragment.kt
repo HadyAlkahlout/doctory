@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
+import com.hadykahlout.doctory.adapter.BookAppointmentAdapter
+import com.hadykahlout.doctory.adapter.NotificationsAdapter
 import com.hadykahlout.doctory.databinding.FragmentNotificationsBinding
 import com.hadykahlout.doctory.ui.activity.MainActivity
 
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var  binding: FragmentNotificationsBinding
+    private lateinit var binding: FragmentNotificationsBinding
+    private lateinit var notificationsAdapter: NotificationsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +32,19 @@ class NotificationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imgBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
+        notificationsAdapter = NotificationsAdapter(requireContext())
+
+        getData()
+
+        binding.rcNotifications.adapter = notificationsAdapter
+
+    }
+
+    private fun getData() {
 
     }
 

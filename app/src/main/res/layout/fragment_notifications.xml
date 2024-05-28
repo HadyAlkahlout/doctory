@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".ui.fragment.main.notification.NotificationsFragment">
 
@@ -53,20 +53,20 @@
         android:id="@+id/llEmptyData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
         android:paddingHorizontal="24dp"
         android:paddingVertical="16dp"
-        android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
-        app:layout_constraintBottom_toBottomOf="parent">
-        
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar">
+
         <ImageView
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:src="@drawable/ic_notication_empty"/>
+            android:src="@drawable/ic_notication_empty" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
-        
+
     </LinearLayout>
 
     <LinearLayout
@@ -84,46 +84,21 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appBar"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/booking_appointment"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSeeAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/see_all"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                android:textStyle="normal" />
-
-        </LinearLayout>
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcAppointments"
+            android:id="@+id/rcNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            tools:listitem="@layout/item_book_appointment"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="2"/>
+            tools:itemCount="3"
+            tools:listitem="@layout/item_notification" />
 
     </LinearLayout>
 

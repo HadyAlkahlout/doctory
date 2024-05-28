@@ -7,24 +7,28 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hadykahlout.doctory.databinding.ItemNotificationBinding
-import com.hadykahlout.doctory.model.Notification
+import com.hadykahlout.doctory.databinding.ItemBookAppointmentBinding
+import com.hadykahlout.doctory.model.BookAppointment
 
-class NotificationsAdapter(val context: Context) :
-    ListAdapter<Notification, NotificationsAdapter.ViewHolder>(diffCallback) {
+class BookAppointmentAdapter(
+    val context: Context,
+    val onAccept: (book: BookAppointment) -> Unit,
+    val onReject: (book: BookAppointment) -> Unit,
+) :
+    ListAdapter<BookAppointment, BookAppointmentAdapter.ViewHolder>(diffCallback) {
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Notification>() {
+        private val diffCallback = object : DiffUtil.ItemCallback<BookAppointment>() {
             override fun areItemsTheSame(
-                oldItem: Notification,
-                newItem: Notification
+                oldItem: BookAppointment,
+                newItem: BookAppointment
             ): Boolean {
                 return oldItem === newItem // check if the items are the same. use the id if your model has one.
             }
 
             override fun areContentsTheSame(
-                oldItem: Notification,
-                newItem: Notification
+                oldItem: BookAppointment,
+                newItem: BookAppointment
             ): Boolean {
                 return oldItem == newItem
             }
@@ -33,7 +37,7 @@ class NotificationsAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemNotificationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemBookAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -41,21 +45,29 @@ class NotificationsAdapter(val context: Context) :
         holder.bind(position)
     }
 
-    inner class ViewHolder(private val binding: ItemNotificationBinding) :
+    inner class ViewHolder(private val binding: ItemBookAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
             // bind the view
-            if (getItem(position).image != null && getItem(position).image != ""){
+            if (getItem(position).image != null && getItem(position).image != "") {
                 Glide
                     .with(context)
                     .load(getItem(position).image)
                     .into(binding.imgPatient)
             }
-            binding.tvTitle.text = getItem(position).title
-            binding.tvDetails.text = getItem(position).details
+            binding.tvName.text = getItem(position).name
+            binding.tvCategory.text = getItem(position).category
             binding.tvDate.text = getItem(position).date
             binding.tvTime.text = getItem(position).time
+
+            binding.llAccept.setOnClickListener {
+                onAccept(getItem(position))
+            }
+
+            binding.llReject.setOnClickListener {
+                onReject(getItem(position))
+            }
         }
     }
 
