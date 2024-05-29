@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_room">
+
+    <fragment
+        android:id="@+id/navigation_room"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.patient.rooms.RoomsFragment"
+        android:label="fragment_rooms"
+        tools:layout="@layout/fragment_rooms" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.notification.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+</navigation>

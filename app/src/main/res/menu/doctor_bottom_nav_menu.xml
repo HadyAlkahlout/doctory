@@ -7,19 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_room"
-        android:icon="@drawable/ic_main_waiting"
-        android:title="@string/waiting_rooms" />
-
-    <item
         android:id="@+id/navigation_appointment"
         android:icon="@drawable/ic_main_appointment"
         android:title="@string/appointment" />
-
-    <item
-        android:id="@+id/navigation_messages"
-        android:icon="@drawable/ic_main_messages"
-        android:title="@string/messages" />
 
     <item
         android:id="@+id/navigation_profile"

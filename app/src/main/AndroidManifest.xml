@@ -27,9 +27,11 @@
         android:theme="@style/Theme.Doctory"
         tools:targetApi="31" >
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main" />
+            android:name=".ui.activity.PatientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.DoctorActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.AuthActivity"
             android:exported="false" />

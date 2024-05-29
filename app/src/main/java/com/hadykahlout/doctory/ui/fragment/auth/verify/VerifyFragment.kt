@@ -2,8 +2,6 @@ package com.hadykahlout.doctory.ui.fragment.auth.verify
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.databinding.FragmentVerifyBinding
-import com.hadykahlout.doctory.ui.activity.MainActivity
+import com.hadykahlout.doctory.ui.activity.DoctorActivity
+import com.hadykahlout.doctory.ui.activity.PatientActivity
 
 class VerifyFragment : Fragment() {
 
@@ -87,7 +86,8 @@ class VerifyFragment : Fragment() {
     }
 
     private fun done() {
-        requireActivity().startActivity(Intent(requireContext(), MainActivity::class.java))
+        requireActivity().startActivity(Intent(requireContext(), DoctorActivity::class.java))
+//        requireActivity().startActivity(Intent(requireContext(), PatientActivity::class.java))
         requireActivity().finish()
     }
 

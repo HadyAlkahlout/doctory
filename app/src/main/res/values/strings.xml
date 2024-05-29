@@ -62,4 +62,17 @@
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>
     <string name="earlier_notification">Earlier Notification</string>
+    <string name="schedule">Schedule</string>
+    <string name="list_view">List View</string>
+    <string name="add_schedule">Add Schedule</string>
+    <string name="step">Step</string>
+    <string name="select_the_date">Select the Date</string>
+    <string name="save_schedule">Save Schedule</string>
+    <string name="select_time">Select Time</string>
+    <string name="end">End</string>
+    <string name="start">Start</string>
+    <string name="duration">Duration</string>
+    <string name="successfully">Successfully</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="your_schedule_has_been_created">Your schedule has been created</string>
 </resources>

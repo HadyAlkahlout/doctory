@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.js.inline.util.collectReferencedNames
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -10,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.hadykahlout.doctory"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -28,6 +30,7 @@ android {
         }
     }
     compileOptions {
+//        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -75,4 +78,7 @@ dependencies {
 
     //Charts
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    //Calender
+    implementation("com.kizitonwose.calendar:view:2.5.0")
 }

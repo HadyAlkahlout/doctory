@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment.main.home
+package com.hadykahlout.doctory.ui.fragment.main.doctor.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,7 +36,7 @@ class HomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardNotifications.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_notificationsFragment)
+            findNavController().navigate(R.id.notificationsFragment)
         }
         patientsAppointments()
         binding.tvTotalPatientTitle.text = "${binding.tvTotalPatientTitle.text} July"

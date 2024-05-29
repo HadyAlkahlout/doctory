@@ -7,7 +7,7 @@
     android:background="@color/colorScreen"
     android:paddingHorizontal="24dp"
     android:paddingVertical="16dp"
-    tools:context=".ui.fragment.main.home.HomeFragment">
+    tools:context=".ui.fragment.main.doctor.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="42dp"

@@ -26,9 +26,11 @@ class SplashActivity : BaseActivity() {
 
             if (HelperFunctions.checkForInternet()){
                 if (SharedPrefsHelper.has(IS_FIRST_TIME)){
-                    startActivity(Intent(this.baseContext, MainActivity::class.java))
+                    startActivity(Intent(this.baseContext, DoctorActivity::class.java))
+//                    startActivity(Intent(this.baseContext, PatientActivity::class.java))
                 } else {
-                    startActivity(Intent(this.baseContext, MainActivity::class.java))
+                    startActivity(Intent(this.baseContext, DoctorActivity::class.java))
+//                    startActivity(Intent(this.baseContext, PatientActivity::class.java))
 //                    startActivity(Intent(this.baseContext, WelcomingActivity::class.java))
                 }
                 finish()

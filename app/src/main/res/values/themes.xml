@@ -11,4 +11,13 @@
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">#3E3384FF</item>
     </style>
+
+    <style name="Theme.Custom" parent="android:Theme">
+        <item name="android:calendarViewStyle">@style/Widget.CalendarView.Custom</item>
+    </style>
+
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">@color/colorAccent</item>
+        <item name="android:weekNumberColor">@color/required</item>
+    </style>
 </resources>

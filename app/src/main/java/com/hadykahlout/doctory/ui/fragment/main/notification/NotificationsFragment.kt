@@ -6,13 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
-import com.hadykahlout.doctory.R
-import com.hadykahlout.doctory.adapter.BookAppointmentAdapter
 import com.hadykahlout.doctory.adapter.NotificationsAdapter
 import com.hadykahlout.doctory.databinding.FragmentNotificationsBinding
-import com.hadykahlout.doctory.ui.activity.MainActivity
+import com.hadykahlout.doctory.ui.activity.DoctorActivity
 
 
 class NotificationsFragment : Fragment() {
@@ -25,7 +21,7 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNotificationsBinding.inflate(layoutInflater)
-        (requireActivity() as MainActivity).binding.navView.visibility = View.GONE
+        (requireActivity() as DoctorActivity).binding.navView.visibility = View.GONE
         return binding.root
     }
 
@@ -50,7 +46,7 @@ class NotificationsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (requireActivity() as MainActivity).binding.navView.visibility = View.VISIBLE
+        (requireActivity() as DoctorActivity).binding.navView.visibility = View.VISIBLE
     }
 
 }
