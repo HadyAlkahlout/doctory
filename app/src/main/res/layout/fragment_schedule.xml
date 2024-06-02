@@ -7,7 +7,7 @@
     android:background="@color/colorScreen"
     android:paddingHorizontal="16dp"
     android:paddingTop="16dp"
-    tools:context=".ui.fragment.main.doctor.appointment.AppointmentFragment">
+    tools:context=".ui.fragment.main.doctor.schedule.ScheduleFragment">
 
     <TextView
         android:layout_width="wrap_content"

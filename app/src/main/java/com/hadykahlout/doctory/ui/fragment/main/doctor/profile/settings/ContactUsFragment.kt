@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment.main.patient.rooms
+package com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.hadykahlout.doctory.R
 
-class RoomsFragment : Fragment() {
+
+class ContactUsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rooms, container, false)
+        return inflater.inflate(R.layout.fragment_contact_us, container, false)
     }
 
 }

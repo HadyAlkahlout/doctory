@@ -11,12 +11,12 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"/>
     <fragment
-        android:id="@+id/navigation_appointment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.appointment.AppointmentFragment"
-        android:label="fragment_appointment"
-        tools:layout="@layout/fragment_appointment" >
+        android:id="@+id/navigation_schedule"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" >
         <action
-            android:id="@+id/action_navigation_appointment_to_addScheduleFragment"
+            android:id="@+id/action_navigation_schedule_to_addScheduleFragment"
             app:destination="@id/addScheduleFragment" />
     </fragment>
     <fragment
@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/addScheduleFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.appointment.add_schedule.AddScheduleFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.add_schedule.AddScheduleFragment"
         android:label="fragment_add_schedule"
         tools:layout="@layout/fragment_add_schedule" />
 

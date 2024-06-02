@@ -21,7 +21,7 @@
         app:menu="@menu/patient_bottom_nav_menu"/>
 
     <fragment
-        android:id="@+id/nav_host_fragment_activity_doctor"
+        android:id="@+id/nav_host_fragment_activity_patient"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -121,11 +121,11 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/gray"/>
+            android:background="@color/lightGray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="40dp"
             android:orientation="horizontal"
             android:paddingHorizontal="16dp"
             android:weightSum="2"
@@ -159,7 +159,7 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/gray"/>
+                android:background="@color/lightGray"/>
 
             <LinearLayout
                 android:id="@+id/llAccept"

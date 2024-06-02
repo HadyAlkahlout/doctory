@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment.main.doctor.appointment.add_schedule
+package com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.add_schedule
 
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -22,7 +22,6 @@ import com.hadykahlout.doctory.utils.MonthViewContainer
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.daysOfWeek
-import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import java.time.Year

@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment.main.doctor.appointment.add_schedule
+package com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.add_schedule
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.ui.fragment.main.doctor.appointment
+package com.hadykahlout.doctory.ui.fragment.main.doctor.schedule
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.hadykahlout.doctory.R
-import com.hadykahlout.doctory.databinding.FragmentAppointmentBinding
+import com.hadykahlout.doctory.databinding.FragmentScheduleBinding
 
-class AppointmentFragment : Fragment() {
+class ScheduleFragment : Fragment() {
 
-    private lateinit var binding: FragmentAppointmentBinding
+    private lateinit var binding: FragmentScheduleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAppointmentBinding.inflate(layoutInflater)
+        binding = FragmentScheduleBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -29,7 +29,7 @@ class AppointmentFragment : Fragment() {
         }
 
         binding.cardAddSchedule.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_appointment_to_addScheduleFragment)
+            findNavController().navigate(R.id.action_navigation_schedule_to_addScheduleFragment)
         }
 
     }

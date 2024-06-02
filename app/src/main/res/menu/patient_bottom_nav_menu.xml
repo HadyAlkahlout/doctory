@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_room"
+        android:id="@+id/navigation_appointments"
         android:icon="@drawable/ic_main_waiting"
-        android:title="@string/waiting_rooms" />
+        android:title="@string/appointments" />
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_patient_profile"
         android:icon="@drawable/ic_main_profile"
         android:title="@string/profile" />
 

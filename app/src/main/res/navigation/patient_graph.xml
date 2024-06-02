@@ -6,19 +6,36 @@
     app:startDestination="@+id/navigation_room">
 
     <fragment
-        android:id="@+id/navigation_room"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.patient.rooms.RoomsFragment"
+        android:id="@+id/navigation_appointments"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.patient.appointment.AppointmentsFragment"
         android:label="fragment_rooms"
-        tools:layout="@layout/fragment_rooms" />
+        tools:layout="@layout/fragment_appointments" />
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.ProfileFragment"
+        android:id="@+id/navigation_patient_profile"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.patient.profile.PatientProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_patient_profile" >
+        <action
+            android:id="@+id/action_navigation_patient_profile_to_insuranceFragment"
+            app:destination="@id/insuranceFragment" />
+        <action
+            android:id="@+id/action_navigation_patient_profile_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.hadykahlout.doctory.ui.fragment.main.notification.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/insuranceFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.patient.profile.insurance.InsuranceFragment"
+        android:label="fragment_insurance"
+        tools:layout="@layout/fragment_insurance" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
 
 </navigation>

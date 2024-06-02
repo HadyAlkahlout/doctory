@@ -27,7 +27,7 @@ class DoctorActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.navigation_appointment,
+                R.id.navigation_schedule,
                 R.id.navigation_profile
             )
         )
