@@ -1,7 +1,7 @@
 const val LOG_TAG = "Doctory_TAG"
 
 //Domains
-const val BASE_DOMAIN = "https://"
+const val BASE_DOMAIN = "https://api.doctory.site/api/v1/"
 
 // Shared Keys
 const val APP_LANGUAGE = "APP_LANGUAGE"

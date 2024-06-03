@@ -12,15 +12,25 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.databinding.FragmentVerifyBinding
+import com.hadykahlout.doctory.model.api.auth.ForgotPassword
+import com.hadykahlout.doctory.model.api.auth.LoginUser
+import com.hadykahlout.doctory.model.api.auth.VerifyEmail
+import com.hadykahlout.doctory.model.api.auth.VerifyResetCode
 import com.hadykahlout.doctory.ui.activity.DoctorActivity
 import com.hadykahlout.doctory.ui.activity.PatientActivity
+import com.hadykahlout.doctory.ui.dialog.LoadingDialog
+import com.hadykahlout.doctory.ui.fragment.auth.AuthViewModel
 
 class VerifyFragment : Fragment() {
 
     private lateinit var binding: FragmentVerifyBinding
-    private val viewModel: VerifyViewModel by lazy {
+    private val verifyViewModel: VerifyViewModel by lazy {
         ViewModelProvider(this)[VerifyViewModel::class.java]
     }
+    private val viewModel: AuthViewModel by lazy {
+        ViewModelProvider(this)[AuthViewModel::class.java]
+    }
+    private val loading = LoadingDialog()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +43,7 @@ class VerifyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.startTimer()
+        verifyViewModel.startTimer()
 
         binding.tvEmail.text = requireArguments().getString("emailID")
 
@@ -41,11 +51,11 @@ class VerifyFragment : Fragment() {
             binding.tvVerfiyType.text = requireActivity().getString(R.string.phone_verify)
         }
 
-        viewModel.timer.observe(viewLifecycleOwner){time ->
+        verifyViewModel.timer.observe(viewLifecycleOwner) { time ->
             binding.tvTimer.text = time
         }
 
-        viewModel.resendVisibility.observe(viewLifecycleOwner){status ->
+        verifyViewModel.resendVisibility.observe(viewLifecycleOwner) { status ->
             binding.tvResend.visibility = if (status) View.VISIBLE else View.GONE
         }
 
@@ -54,7 +64,7 @@ class VerifyFragment : Fragment() {
         }
 
         binding.tvResend.setOnClickListener {
-            viewModel.startTimer()
+            resendCode()
         }
 
         binding.btnDone.setOnClickListener {
@@ -63,26 +73,125 @@ class VerifyFragment : Fragment() {
 
         binding.btnContinue.setOnClickListener {
             if (binding.spfPIN.text!!.isEmpty()) {
-                binding.spfPIN.error = "Required!!"
-                Snackbar.make(requireView(), "Verify code is required!!", Snackbar.LENGTH_SHORT)
+                binding.spfPIN.error = getString(R.string.required)
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.verify_code_is_required), Snackbar.LENGTH_SHORT
+                )
+                    .setTextColor(requireActivity().getColor(R.color.required))
+                    .show()
+            }else if(binding.spfPIN.text!!.toString() == requireArguments().getString("code")) {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.incorrect_code), Snackbar.LENGTH_SHORT
+                )
                     .setTextColor(requireActivity().getColor(R.color.required))
                     .show()
             } else {
-                Toast.makeText(requireContext(), "Code verified successfully!!", Toast.LENGTH_SHORT)
-                    .show()
-                if (requireArguments().getBoolean("isResetPass")){
-                    findNavController().navigate(R.id.action_verifyFragment_to_newPassFragment)
+
+                if (requireArguments().getBoolean("isResetPass")) {
+                    verifyResetCode()
                 } else {
-                    if (requireArguments().getBoolean("isMobile")) {
-                        done()
-                    } else {
-                        binding.llCode.visibility = View.GONE
-                        binding.llSuccessful.visibility = View.VISIBLE
-                    }
+                    verifyCode()
                 }
             }
         }
 
+    }
+
+    private fun verifyCode() {
+        loading.show(requireActivity().supportFragmentManager, "Loading")
+        val verify = VerifyEmail(
+            email = requireArguments().getString("emailID") ?: "",
+            code = binding.spfPIN.text.toString()
+        )
+        viewModel.verifyEmail(verify)
+        viewModel.verifyEmailData.observe(viewLifecycleOwner) { response ->
+            loading.dismiss()
+            if (response.body() != null) {
+                if (response.body()!!.status && response.body()!!.code in 200..299) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.code_verified_successfully), Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    binding.llCode.visibility = View.GONE
+                    binding.llSuccessful.visibility = View.VISIBLE
+                } else {
+                    Snackbar.make(
+                        requireView(),
+                        response.body()!!.message, Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun verifyResetCode() {
+        loading.show(requireActivity().supportFragmentManager, "Loading")
+        val verify = VerifyResetCode(
+            email = requireArguments().getString("emailID") ?: "",
+            resetCode = binding.spfPIN.text.toString()
+        )
+        viewModel.verifyResetCode(verify)
+        viewModel.verifyResetCodeData.observe(viewLifecycleOwner) { response ->
+            loading.dismiss()
+            if (response.body() != null) {
+                if (response.body()!!.status && response.body()!!.code in 200..299) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.code_verified_successfully), Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    findNavController().navigate(R.id.action_verifyFragment_to_newPassFragment)
+                } else {
+                    Snackbar.make(
+                        requireView(),
+                        response.body()!!.message, Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun resendCode() {
+        loading.show(requireActivity().supportFragmentManager, "Loading")
+        val resend = ForgotPassword(
+            email = requireArguments().getString("emailID") ?: ""
+        )
+        viewModel.resendVerification(resend)
+        viewModel.resendVerificationData.observe(viewLifecycleOwner) { response ->
+            loading.dismiss()
+            if (response.body() != null) {
+                if (response.body()!!.status && response.body()!!.code in 200..299) {
+                    verifyViewModel.startTimer()
+                    Snackbar.make(
+                        requireView(),
+                        getString(R.string.we_resent_you_the_code), Snackbar.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Snackbar.make(
+                        requireView(),
+                        response.body()!!.message, Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     private fun done() {

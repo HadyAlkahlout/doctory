@@ -131,4 +131,16 @@
     <string name="kg">KG</string>
     <string name="bpm">BPM</string>
     <string name="appointments">Appointments</string>
+    <string name="something_went_wrong">Something went wrong!!</string>
+    <string name="required">Required!!</string>
+    <string name="you_must_agree_to_our_terms_of_service_and_privacy_policy_to_make_an_account">You must agree to our terms of service and privacy policy to make an account!!</string>
+    <string name="code_verified_successfully">Code verified successfully!!</string>
+    <string name="we_resent_you_the_code">We resent you the code!!</string>
+    <string name="verify_code_is_required">Verify code is required!!</string>
+    <string name="confirm_password_do_not_match_the_new_password">Confirm password do not match the new password!!</string>
+    <string name="incorrect_code">Incorrect code!!</string>
+    <string name="cool_you_have_very_strong_password">Cool! You have very strong password</string>
+    <string name="atleast_lowercase_or_uppercase_letters">Atleast lowercase or uppercase letters</string>
+    <string name="atleast_1_number_1_9">Atleast 1 number (1-9)</string>
+    <string name="minimum_8_characters">Minimum 8 characters</string>
 </resources>

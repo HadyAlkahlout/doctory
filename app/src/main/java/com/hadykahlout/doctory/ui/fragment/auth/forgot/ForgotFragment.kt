@@ -31,13 +31,11 @@ class ForgotFragment : Fragment() {
         val bundle = Bundle()
 
         binding.cardEmail.setOnClickListener {
-            bundle.putBoolean("isResetPass", true)
             bundle.putBoolean("isEmail", true)
             findNavController().navigate(R.id.action_forgotFragment_to_mobileFragment, bundle)
         }
 
         binding.cardPhone.setOnClickListener {
-            bundle.putBoolean("isResetPass", true)
             bundle.putBoolean("isEmail", false)
             findNavController().navigate(R.id.action_forgotFragment_to_mobileFragment, bundle)
         }

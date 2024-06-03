@@ -29,7 +29,13 @@ val retrofit: Retrofit = Retrofit.Builder()
     .build()
 
 object ApiService {
-    val client: ApiClient by lazy {
-        retrofit.create(ApiClient::class.java)
+    val authClient: AuthApiClient by lazy {
+        retrofit.create(AuthApiClient::class.java)
+    }
+    val doctorClient: DoctorApiClient by lazy {
+        retrofit.create(DoctorApiClient::class.java)
+    }
+    val patientClient: PatientApiClient by lazy {
+        retrofit.create(PatientApiClient::class.java)
     }
 }

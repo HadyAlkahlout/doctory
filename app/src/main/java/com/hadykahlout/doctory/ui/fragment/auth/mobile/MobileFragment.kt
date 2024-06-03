@@ -5,13 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.databinding.FragmentMobileBinding
+import com.hadykahlout.doctory.model.api.auth.ForgotPassword
+import com.hadykahlout.doctory.ui.dialog.LoadingDialog
+import com.hadykahlout.doctory.ui.fragment.auth.AuthViewModel
 
 class MobileFragment : Fragment() {
 
     private lateinit var binding: FragmentMobileBinding
+    private val viewModel: AuthViewModel by lazy {
+        ViewModelProvider(this)[AuthViewModel::class.java]
+    }
+    private val loading = LoadingDialog()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,14 +33,7 @@ class MobileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val isResetPass = requireArguments().getBoolean("isResetPass")
         val isEmail = requireArguments().getBoolean("isEmail")
-
-        if (isResetPass){
-            binding.tvTitle.text = getString(R.string.reset_password)
-            binding.tvHint.text =
-                getString(R.string.enter_your_phone_number_we_will_send_a_verification_code_to_email)
-        }
 
         if (isEmail){
             binding.llPhone.visibility = View.GONE
@@ -46,13 +48,29 @@ class MobileFragment : Fragment() {
 
         binding.btnContinue.setOnClickListener {
             if (isEmail && binding.etEmail.text.isEmpty()){
-                binding.etEmail.error = "Required!!"
+                binding.etEmail.error = getString(R.string.required)
             }else if (!(isEmail) && binding.etPhone.text.isEmpty()){
-                binding.etPhone.error = "Required!!"
+                binding.etPhone.error = getString(R.string.required)
             } else {
-                val bundle = Bundle()
+                forgotPassword()
+            }
+        }
 
-                if (isEmail){
+    }
+
+    private fun forgotPassword(){
+        loading.show(requireActivity().supportFragmentManager, "Loading")
+        val forgot = ForgotPassword(
+            email = requireArguments().getString("emailID") ?: ""
+        )
+        viewModel.forgotPassword(forgot)
+        viewModel.forgotPasswordData.observe(viewLifecycleOwner) { response ->
+            loading.dismiss()
+            if (response.body() != null) {
+                val bundle = Bundle()
+                bundle.putBoolean("isResetPass", true)
+
+                if (requireArguments().getBoolean("isEmail")){
                     bundle.putString("emailID", binding.etEmail.text!!.trim().toString())
                     bundle.putBoolean("isMobile", false)
                 } else {
@@ -60,14 +78,14 @@ class MobileFragment : Fragment() {
                     bundle.putBoolean("isMobile", true)
                 }
 
-                if (isResetPass){
-                    bundle.putBoolean("isResetPass", true)
-                }
-
                 findNavController().navigate(R.id.action_mobileFragment_to_verifyFragment, bundle)
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
             }
         }
-
     }
 
 }

@@ -29,9 +29,7 @@ class SplashActivity : BaseActivity() {
 //                    startActivity(Intent(this.baseContext, DoctorActivity::class.java))
                     startActivity(Intent(this.baseContext, PatientActivity::class.java))
                 } else {
-//                    startActivity(Intent(this.baseContext, DoctorActivity::class.java))
-                    startActivity(Intent(this.baseContext, PatientActivity::class.java))
-//                    startActivity(Intent(this.baseContext, WelcomingActivity::class.java))
+                    startActivity(Intent(this.baseContext, WelcomingActivity::class.java))
                 }
                 finish()
             }else{

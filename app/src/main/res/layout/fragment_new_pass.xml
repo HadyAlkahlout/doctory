@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.auth.new_pass.NewPassFragment">
 
     <LinearLayout
         android:id="@+id/llPassword"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        android:background="@color/white"
-        android:visibility="visible"
-        tools:context=".ui.fragment.auth.new_pass.NewPassFragment">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,19 +112,19 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/btnDone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnDone">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:cardElevation="0dp"
                 app:cardBackgroundColor="#25FFFFFF"
-                app:cardCornerRadius="100dp">
+                app:cardCornerRadius="100dp"
+                app:cardElevation="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_done"/>
+                        android:src="@drawable/ic_done" />
 
                 </LinearLayout>
 
@@ -164,17 +164,17 @@
             android:id="@+id/btnDone"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:backgroundTint="@color/white"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/white"
             android:text="@string/sign_in_now"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"
             app:cornerRadius="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
