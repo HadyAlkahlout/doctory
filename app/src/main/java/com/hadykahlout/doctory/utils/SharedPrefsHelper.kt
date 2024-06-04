@@ -1,8 +1,11 @@
 package com.hadykahlout.doctory.utils
 
+import SERVER_USER
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import com.hadykahlout.doctory.app.App
+import com.hadykahlout.doctory.model.api.response.auth.ServerUser
 
 object SharedPrefsHelper {
 
@@ -55,6 +58,12 @@ object SharedPrefsHelper {
     operator fun <T> get(key: String, defValue: T): T {
         val returnValue = sharedPreferences.all[key] as T
         return returnValue ?: defValue
+    }
+
+    fun getServerUser() : ServerUser{
+        val gson = Gson()
+        val jsonUser = SharedPrefsHelper.getString(SERVER_USER, "")
+        return gson.fromJson(jsonUser, ServerUser::class.java)
     }
 
 

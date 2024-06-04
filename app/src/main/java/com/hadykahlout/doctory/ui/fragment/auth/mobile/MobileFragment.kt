@@ -50,7 +50,14 @@ class MobileFragment : Fragment() {
             if (isEmail && binding.etEmail.text.isEmpty()){
                 binding.etEmail.error = getString(R.string.required)
             }else if (!(isEmail) && binding.etPhone.text.isEmpty()){
-                binding.etPhone.error = getString(R.string.required)
+//                binding.etPhone.error = getString(R.string.required)
+
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.this_feature_will_be_available_soon),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
             } else {
                 forgotPassword()
             }
@@ -61,7 +68,7 @@ class MobileFragment : Fragment() {
     private fun forgotPassword(){
         loading.show(requireActivity().supportFragmentManager, "Loading")
         val forgot = ForgotPassword(
-            email = requireArguments().getString("emailID") ?: ""
+            email = binding.etEmail.text.toString()
         )
         viewModel.forgotPassword(forgot)
         viewModel.forgotPasswordData.observe(viewLifecycleOwner) { response ->
@@ -69,6 +76,7 @@ class MobileFragment : Fragment() {
             if (response.body() != null) {
                 val bundle = Bundle()
                 bundle.putBoolean("isResetPass", true)
+                bundle.putString("otp", response.body()!!.data!!.code)
 
                 if (requireArguments().getBoolean("isEmail")){
                     bundle.putString("emailID", binding.etEmail.text!!.trim().toString())

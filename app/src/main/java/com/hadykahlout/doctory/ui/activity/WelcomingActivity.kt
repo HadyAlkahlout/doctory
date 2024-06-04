@@ -1,5 +1,6 @@
 package com.hadykahlout.doctory.ui.activity
 
+import IS_FIRST_OPEN
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.adapter.WelcomeAdapter
 import com.hadykahlout.doctory.databinding.ActivityWelcomingBinding
 import com.hadykahlout.doctory.model.WelcomePage
+import com.hadykahlout.doctory.utils.SharedPrefsHelper
 
 class WelcomingActivity : AppCompatActivity() {
 
@@ -38,6 +40,7 @@ class WelcomingActivity : AppCompatActivity() {
         }
 
         binding.btnStart.setOnClickListener {
+            SharedPrefsHelper.save(IS_FIRST_OPEN, false)
             startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }

@@ -3,6 +3,8 @@ package com.hadykahlout.doctory.ui.fragment.auth.sign_up
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,8 +45,11 @@ class SignUpFragment : Fragment() {
         }
 
         binding.googleAuth.setOnClickListener {
-            Snackbar.make(requireView(), "Go Google Authentication", Snackbar.LENGTH_SHORT).show()
-        }
+            Snackbar.make(
+                requireView(),
+                getString(R.string.this_feature_will_be_available_soon),
+                Snackbar.LENGTH_SHORT
+            ).show()        }
 
         binding.tvSignIn.setOnClickListener {
             findNavController().navigateUp()
@@ -120,14 +125,31 @@ class SignUpFragment : Fragment() {
 
     private fun checkSignUp() {
         if (binding.etUsername.text!!.isEmpty()) {
+            Log.e("TAG", "checkSignUp: etUsername error", )
             binding.usernameLayout.error = getString(R.string.required)
         } else if (binding.etEmail.text!!.isEmpty()) {
+            Log.e("TAG", "checkSignUp: etEmail error", )
+            binding.usernameLayout.error = null
             binding.emailLayout.error = getString(R.string.required)
+        } else if (Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text!!.toString()).matches()) {
+            Log.e("TAG", "checkSignUp: etEmail error", )
+            binding.usernameLayout.error = null
+            binding.emailLayout.error = "Invalid email!!"
         } else if (binding.etPassword.text!!.isEmpty()) {
+            Log.e("TAG", "checkSignUp: etPassword error", )
+            binding.usernameLayout.error = null
+            binding.emailLayout.error = null
             binding.passwordLayout.error = getString(R.string.required)
-        } else if (passCheck) {
+        } else if (!(passCheck)) {
+            Log.e("TAG", "checkSignUp: passCheck error", )
+            binding.usernameLayout.error = null
+            binding.emailLayout.error = null
             binding.passwordLayout.error = ""
         } else if (!(binding.cbTerms.isChecked)) {
+            Log.e("TAG", "checkSignUp: cbTerms error", )
+            binding.usernameLayout.error = null
+            binding.emailLayout.error = null
+            binding.passwordLayout.error = null
             Snackbar.make(
                 requireView(),
                 getString(R.string.you_must_agree_to_our_terms_of_service_and_privacy_policy_to_make_an_account),
@@ -155,8 +177,10 @@ class SignUpFragment : Fragment() {
             if (response.body() != null) {
                 if (response.body()!!.status && response.body()!!.code in 200..299) {
                     val bundle = Bundle()
+                    bundle.putBoolean("isResetPass", false)
                     bundle.putString("emailID", binding.etEmail.text!!.trim().toString())
                     bundle.putBoolean("isMobile", false)
+                    bundle.putString("otp", response.body()!!.data!!.code)
                     findNavController().navigate(
                         R.id.action_signUpFragment_to_verifyFragment,
                         bundle

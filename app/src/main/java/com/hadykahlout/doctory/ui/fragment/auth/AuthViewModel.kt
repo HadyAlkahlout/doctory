@@ -23,6 +23,9 @@ import com.hadykahlout.doctory.model.api.auth.ResetPassword
 import com.hadykahlout.doctory.model.api.auth.SignUpUser
 import com.hadykahlout.doctory.model.api.auth.VerifyEmail
 import com.hadykahlout.doctory.model.api.auth.VerifyResetCode
+import com.hadykahlout.doctory.model.api.response.auth.CodeResponse
+import com.hadykahlout.doctory.model.api.response.auth.ResetCodeResponse
+import com.hadykahlout.doctory.model.api.response.auth.ServerUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,13 +36,14 @@ class AuthViewModel : ViewModel() {
 
     private val repository = AuthRepository()
 
-    val signUpData = MutableLiveData<Response<APIResponse<Any>>>()
-    val loginData = MutableLiveData<Response<APIResponse<Any>>>()
+    val signUpData = MutableLiveData<Response<APIResponse<CodeResponse>>>()
+    val loginData = MutableLiveData<Response<APIResponse<ServerUser>>>()
     val googleData = MutableLiveData<Response<APIResponse<Any>>>()
-    val verifyEmailData = MutableLiveData<Response<APIResponse<Any>>>()
-    val forgotPasswordData = MutableLiveData<Response<APIResponse<Any>>>()
-    val resendVerificationData = MutableLiveData<Response<APIResponse<Any>>>()
+    val verifyEmailData = MutableLiveData<Response<APIResponse<ServerUser>>>()
+    val forgotPasswordData = MutableLiveData<Response<APIResponse<ResetCodeResponse>>>()
+    val resendVerificationData = MutableLiveData<Response<APIResponse<CodeResponse>>>()
     val verifyResetCodeData = MutableLiveData<Response<APIResponse<Any>>>()
+
     val resetPasswordData = MutableLiveData<Response<APIResponse<Any>>>()
 
     fun signUp(user: SignUpUser){

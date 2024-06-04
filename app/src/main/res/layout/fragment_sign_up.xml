@@ -294,7 +294,7 @@
             android:textSize="12sp"
             android:textStyle="normal" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="55dp"
