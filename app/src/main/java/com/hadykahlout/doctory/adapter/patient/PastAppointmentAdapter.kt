@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.adapter
+package com.hadykahlout.doctory.adapter.patient
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,28 +7,25 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hadykahlout.doctory.databinding.ItemBookAppointmentBinding
-import com.hadykahlout.doctory.model.BookAppointment
+import com.hadykahlout.doctory.databinding.ItemPastAppointmentBinding
+import com.hadykahlout.doctory.databinding.ItemRequestBinding
+import com.hadykahlout.doctory.model.patient.Appointment
 
-class BookAppointmentAdapter(
-    val context: Context,
-    val onAccept: (book: BookAppointment) -> Unit,
-    val onReject: (book: BookAppointment) -> Unit,
-) :
-    ListAdapter<BookAppointment, BookAppointmentAdapter.ViewHolder>(diffCallback) {
+class PastAppointmentAdapter(val context: Context) :
+    ListAdapter<Appointment, PastAppointmentAdapter.ViewHolder>(diffCallback) {
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<BookAppointment>() {
+        private val diffCallback = object : DiffUtil.ItemCallback<Appointment>() {
             override fun areItemsTheSame(
-                oldItem: BookAppointment,
-                newItem: BookAppointment
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem === newItem // check if the items are the same. use the id if your model has one.
             }
 
             override fun areContentsTheSame(
-                oldItem: BookAppointment,
-                newItem: BookAppointment
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem == newItem
             }
@@ -37,7 +34,7 @@ class BookAppointmentAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemBookAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemPastAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -45,7 +42,7 @@ class BookAppointmentAdapter(
         holder.bind(position)
     }
 
-    inner class ViewHolder(private val binding: ItemBookAppointmentBinding) :
+    inner class ViewHolder(private val binding: ItemPastAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
@@ -54,20 +51,12 @@ class BookAppointmentAdapter(
                 Glide
                     .with(context)
                     .load(getItem(position).image)
-                    .into(binding.imgPatient)
+                    .into(binding.imgDoctor)
             }
             binding.tvName.text = getItem(position).name
             binding.tvCategory.text = getItem(position).category
             binding.tvDate.text = getItem(position).date
             binding.tvTime.text = getItem(position).time
-
-            binding.llAccept.setOnClickListener {
-                onAccept(getItem(position))
-            }
-
-            binding.llReject.setOnClickListener {
-                onReject(getItem(position))
-            }
         }
     }
 

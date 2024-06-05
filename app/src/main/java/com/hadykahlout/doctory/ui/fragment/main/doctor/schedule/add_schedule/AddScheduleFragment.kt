@@ -15,7 +15,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.databinding.FragmentAddScheduleBinding
+import com.hadykahlout.doctory.model.api.doctor.AddSchedule
 import com.hadykahlout.doctory.ui.activity.DoctorActivity
+import com.hadykahlout.doctory.ui.dialog.LoadingDialog
+import com.hadykahlout.doctory.ui.fragment.main.doctor.DoctorViewModel
 import com.hadykahlout.doctory.ui.sheet.SuccessBottomSheet
 import com.hadykahlout.doctory.utils.DayViewContainer
 import com.hadykahlout.doctory.utils.MonthViewContainer
@@ -24,7 +27,6 @@ import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
-import java.time.Year
 import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.ArrayList
@@ -40,6 +42,11 @@ class AddScheduleFragment : Fragment() {
     }
     val selectedDates = ArrayList<String>()
 
+    private val doctorViewModel by lazy {
+        ViewModelProvider(this)[DoctorViewModel::class.java]
+    }
+    private val loading = LoadingDialog()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +60,6 @@ class AddScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         drawCalender()
-        observeTimeStatus()
         observeDuration()
         setListeners()
 
@@ -97,66 +103,27 @@ class AddScheduleFragment : Fragment() {
             openTimeDialog(false)
         }
 
-        binding.cardAMStart.setOnClickListener {
-            changeTimeStatus(true, 0)
-        }
-
-        binding.cardPMStart.setOnClickListener {
-            changeTimeStatus(true, 1)
-        }
-
-        binding.cardAMEnd.setOnClickListener {
-            changeTimeStatus(false, 0)
-        }
-
-        binding.cardPMEnd.setOnClickListener {
-            changeTimeStatus(false, 1)
-        }
-
-        binding.card5.setOnClickListener {
+        binding.card15.setOnClickListener {
             viewModel.duration.value = 0
         }
 
-        binding.card15.setOnClickListener {
+        binding.card30.setOnClickListener {
             viewModel.duration.value = 1
         }
 
-        binding.card30.setOnClickListener {
+        binding.card45.setOnClickListener {
             viewModel.duration.value = 2
         }
 
-        binding.card45.setOnClickListener {
-            viewModel.duration.value = 3
-        }
-
         binding.card60.setOnClickListener {
-            viewModel.duration.value = 4
+            viewModel.duration.value = 3
         }
     }
 
     private fun observeDuration(){
         viewModel.duration.observe(viewLifecycleOwner){ status ->
             when(status){
-                0 -> {  // means user select 15 min
-                    binding.card5.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
-                    binding.tv5.setTextColor(requireActivity().getColor(R.color.white))
-
-                    binding.card15.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv15.setTextColor(requireActivity().getColor(R.color.black))
-
-                    binding.card30.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv30.setTextColor(requireActivity().getColor(R.color.black))
-
-                    binding.card45.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv45.setTextColor(requireActivity().getColor(R.color.black))
-
-                    binding.card60.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv60.setTextColor(requireActivity().getColor(R.color.black))
-                }
-                1 -> { // means user select 15 min
-                    binding.card5.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv5.setTextColor(requireActivity().getColor(R.color.black))
-
+                0 -> { // means user select 15 min
                     binding.card15.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
                     binding.tv15.setTextColor(requireActivity().getColor(R.color.white))
 
@@ -169,10 +136,7 @@ class AddScheduleFragment : Fragment() {
                     binding.card60.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv60.setTextColor(requireActivity().getColor(R.color.black))
                 }
-                2 -> { // means user select 30 min
-                    binding.card5.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv5.setTextColor(requireActivity().getColor(R.color.black))
-
+                1 -> { // means user select 30 min
                     binding.card15.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv15.setTextColor(requireActivity().getColor(R.color.black))
 
@@ -185,10 +149,7 @@ class AddScheduleFragment : Fragment() {
                     binding.card60.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv60.setTextColor(requireActivity().getColor(R.color.black))
                 }
-                3 -> { // means user select 45 min
-                    binding.card5.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv5.setTextColor(requireActivity().getColor(R.color.black))
-
+                2 -> { // means user select 45 min
                     binding.card15.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv15.setTextColor(requireActivity().getColor(R.color.black))
 
@@ -201,10 +162,7 @@ class AddScheduleFragment : Fragment() {
                     binding.card60.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv60.setTextColor(requireActivity().getColor(R.color.black))
                 }
-                4 -> { // means user select 60 min
-                    binding.card5.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                    binding.tv5.setTextColor(requireActivity().getColor(R.color.black))
-
+                3 -> { // means user select 60 min
                     binding.card15.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
                     binding.tv15.setTextColor(requireActivity().getColor(R.color.black))
 
@@ -217,44 +175,6 @@ class AddScheduleFragment : Fragment() {
                     binding.card60.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
                     binding.tv60.setTextColor(requireActivity().getColor(R.color.white))
                 }
-            }
-        }
-    }
-
-    private fun changeTimeStatus(isStart: Boolean, status: Int) {
-        if (isStart){
-            viewModel.startTimeStatus.value = status
-        } else {
-            viewModel.endTimeStatus.value = status
-        }
-    }
-
-    private fun observeTimeStatus() {
-        viewModel.startTimeStatus.observe(viewLifecycleOwner){ status ->
-            if (status == 0){
-                binding.cardAMStart.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
-                binding.tvAMStart.setTextColor(requireActivity().getColor(R.color.white))
-                binding.cardPMStart.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                binding.tvPMStart.setTextColor(requireActivity().getColor(R.color.black))
-            } else {
-                binding.cardAMStart.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                binding.tvAMStart.setTextColor(requireActivity().getColor(R.color.black))
-                binding.cardPMStart.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
-                binding.tvPMStart.setTextColor(requireActivity().getColor(R.color.white))
-            }
-        }
-
-        viewModel.endTimeStatus.observe(viewLifecycleOwner){ status ->
-            if (status == 0){
-                binding.cardAMEnd.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
-                binding.tvAMEnd.setTextColor(requireActivity().getColor(R.color.white))
-                binding.cardPMEnd.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                binding.tvPMEnd.setTextColor(requireActivity().getColor(R.color.black))
-            } else {
-                binding.cardAMEnd.setCardBackgroundColor(requireActivity().getColor(R.color.softGray))
-                binding.tvAMEnd.setTextColor(requireActivity().getColor(R.color.black))
-                binding.cardPMEnd.setCardBackgroundColor(requireActivity().getColor(R.color.colorPrimary))
-                binding.tvPMEnd.setTextColor(requireActivity().getColor(R.color.white))
             }
         }
     }
@@ -280,19 +200,18 @@ class AddScheduleFragment : Fragment() {
     }
 
     private fun drawCalender() {
-        val currentYear = Year.now()
         val currentMonth = YearMonth.now()
         binding.calendarView.dayBinder = object : MonthDayBinder<DayViewContainer> {
             // Called only when a new container is needed.
             override fun create(view: View) =
                 DayViewContainer(view, requireActivity()) { isSelected: Boolean, date: String ->
                     if (isSelected) {
-                        Log.d(TAG, "create: select $date/$currentMonth/$currentYear")
-                        selectedDates.add("$date/$currentMonth/$currentYear")
+                        Log.d(TAG, "create: select $currentMonth-$date")
+                        selectedDates.add("$currentMonth-$date")
                     } else {
-                        if (selectedDates.contains("$date/$currentMonth/$currentYear")) {
-                            Log.d(TAG, "create: unselect $date/$currentMonth/$currentYear")
-                            selectedDates.remove("$date/$currentMonth/$currentYear")
+                        if (selectedDates.contains("$currentMonth-$date")) {
+                            Log.d(TAG, "create: unselect $currentMonth-$date")
+                            selectedDates.remove("$currentMonth-$date")
                         }
                     }
                 }
@@ -332,6 +251,56 @@ class AddScheduleFragment : Fragment() {
                     }
                 }
             }
+    }
+
+    private fun addSchedule() {
+        loading.show(requireActivity().supportFragmentManager, "Loading")
+        var days = ""
+        selectedDates.forEach {
+            if (selectedDates.indexOf(it) == (selectedDates.size - 1)){
+                days = "$days$it"
+            } else {
+                days = "$days$it, "
+            }
+        }
+        var duration = ""
+        when(viewModel.duration.value){
+            0 -> duration = "15"
+            1 -> duration = "30"
+            2 -> duration = "45"
+            3 -> duration = "60"
+        }
+        val addSchedule = AddSchedule(
+            days = days,
+            startTime = binding.tvTimeStart.text.toString(),
+            endTime = binding.tvTimeEnd.text.toString(),
+            duration = duration
+        )
+        doctorViewModel.addSchedule(addSchedule)
+        doctorViewModel.addData.observe(viewLifecycleOwner){ response ->
+            loading.dismiss()
+            if (response.body() != null) {
+                if (response.body()!!.status && response.body()!!.code in 200..299){
+                    // Here handel the request response
+                    Snackbar.make(
+                        requireView(),
+                        response.body()!!.message,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    findNavController().navigateUp()
+                } else {
+                    Snackbar.make(
+                        requireView(),
+                        response.body()!!.message, Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     override fun onDestroyView() {

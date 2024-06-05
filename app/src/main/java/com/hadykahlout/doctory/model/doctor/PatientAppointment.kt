@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.model
+package com.hadykahlout.doctory.model.doctor
 
 data class PatientAppointment(
     val id: Int,

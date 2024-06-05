@@ -169,14 +169,14 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvPatient"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/see_my_schedule"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvPatient"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/see_my_schedule"-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:textSize="14sp"-->
+<!--                android:textStyle="bold" />-->
 
         </LinearLayout>
 

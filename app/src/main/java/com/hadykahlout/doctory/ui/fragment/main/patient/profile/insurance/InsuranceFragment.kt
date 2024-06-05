@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.hadykahlout.doctory.R
 import com.hadykahlout.doctory.databinding.FragmentInsuranceBinding
+import com.hadykahlout.doctory.ui.activity.DoctorActivity
+import com.hadykahlout.doctory.ui.activity.PatientActivity
 
 class InsuranceFragment : Fragment() {
 
@@ -17,6 +19,7 @@ class InsuranceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentInsuranceBinding.inflate(layoutInflater)
+        (requireActivity() as PatientActivity).binding.navView.visibility = View.GONE
         return binding.root
     }
 
@@ -25,6 +28,11 @@ class InsuranceFragment : Fragment() {
 
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (requireActivity() as PatientActivity).binding.navView.visibility = View.VISIBLE
     }
 
 }

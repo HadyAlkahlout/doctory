@@ -6,16 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hadykahlout.doctory.R
-
+import com.hadykahlout.doctory.databinding.FragmentFaqBinding
 
 class FAQFragment : Fragment() {
+
+    private lateinit var binding: FragmentFaqBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_faq, container, false)
+    ): View {
+        binding = FragmentFaqBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
     }
 
 }

@@ -23,7 +23,23 @@
         android:id="@+id/navigation_profile"
         android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_accountFragment2"
+            app:destination="@id/accountFragment2" />
+        <action
+            android:id="@+id/action_navigation_profile_to_educationFragment"
+            app:destination="@id/educationFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_medicalLicenseFragment"
+            app:destination="@id/medicalLicenseFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_specialityListFragment"
+            app:destination="@id/specialityListFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.hadykahlout.doctory.ui.fragment.main.notification.NotificationsFragment"
@@ -34,5 +50,107 @@
         android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.add_schedule.AddScheduleFragment"
         android:label="fragment_add_schedule"
         tools:layout="@layout/fragment_add_schedule" />
+    <fragment
+        android:id="@+id/accountFragment2"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment2_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.account.EditAccountFragment"
+        android:label="fragment_edit_account"
+        tools:layout="@layout/fragment_edit_account" />
+    <fragment
+        android:id="@+id/educationFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.education.EducationFragment"
+        android:label="fragment_education"
+        tools:layout="@layout/fragment_education" >
+        <action
+            android:id="@+id/action_educationFragment_to_addEducationFragment"
+            app:destination="@id/addEducationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEducationFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.education.AddEducationFragment"
+        android:label="fragment_add_education"
+        tools:layout="@layout/fragment_add_education" />
+    <fragment
+        android:id="@+id/medicalLicenseFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.license.MedicalLicenseFragment"
+        android:label="fragment_medical_license"
+        tools:layout="@layout/fragment_medical_license" >
+        <action
+            android:id="@+id/action_medicalLicenseFragment_to_editLicenseFragment"
+            app:destination="@id/editLicenseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editLicenseFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.license.EditLicenseFragment"
+        android:label="fragment_edit_license"
+        tools:layout="@layout/fragment_edit_license" />
+    <fragment
+        android:id="@+id/specialityListFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.speciality.SpecialityListFragment"
+        android:label="fragment_speciality_list"
+        tools:layout="@layout/fragment_speciality_list" >
+        <action
+            android:id="@+id/action_specialityListFragment_to_addSpecialityFragment"
+            app:destination="@id/addSpecialityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpecialityFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.speciality.AddSpecialityFragment"
+        android:label="fragment_add_speciality"
+        tools:layout="@layout/fragment_add_speciality" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_FAQFragment"
+            app:destination="@id/FAQFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_legalFragment"
+            app:destination="@id/legalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/FAQFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.FAQFragment"
+        android:label="fragment_faq"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/legalFragment"
+        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.LegalFragment"
+        android:label="fragment_legal"
+        tools:layout="@layout/fragment_legal" />
 
 </navigation>

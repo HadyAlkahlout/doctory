@@ -106,31 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="@string/first_name"
+                android:hint="@string/full_name"
                 app:boxBackgroundColor="@color/white"
                 app:boxBackgroundMode="filled">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="normal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="@string/last_name"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLastName"
+                    android:id="@+id/etFullName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
@@ -220,6 +201,7 @@
                 android:orientation="horizontal">
 
                 <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:ccpDialog_allowSearch="false"
@@ -287,7 +269,7 @@
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />

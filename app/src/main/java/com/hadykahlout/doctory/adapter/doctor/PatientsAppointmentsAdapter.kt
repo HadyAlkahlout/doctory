@@ -1,17 +1,16 @@
-package com.hadykahlout.doctory.adapter
+package com.hadykahlout.doctory.adapter.doctor
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hadykahlout.doctory.databinding.ItemPatientAppointmentBinding
-import com.hadykahlout.doctory.model.PatientAppointment
+import com.hadykahlout.doctory.model.doctor.PatientAppointment
 
-class PatientsAppointmentsAdapter(val context: Context, val onMessage: (patient: PatientAppointment) -> Unit) :
+class PatientsAppointmentsAdapter(val context: Context) :
     ListAdapter<PatientAppointment, PatientsAppointmentsAdapter.ViewHolder>(diffCallback) {
 
     companion object {
@@ -56,10 +55,6 @@ class PatientsAppointmentsAdapter(val context: Context, val onMessage: (patient:
                     .with(context)
                     .load(getItem(position).image)
                     .into(binding.imgPatient)
-            }
-
-            binding.imgMessage.setOnClickListener {
-                onMessage(getItem(position))
             }
         }
     }

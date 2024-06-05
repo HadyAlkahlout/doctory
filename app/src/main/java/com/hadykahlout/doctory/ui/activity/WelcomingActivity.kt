@@ -73,25 +73,22 @@ class WelcomingActivity : AppCompatActivity() {
         welcomeData.add(
             WelcomePage(
                 image = R.drawable.welcome_1,
-                title = "Easy Way to Get\n" +
-                        "Better Life",
-                hint = "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat."
+                title = "Easy Way to Get\nBetter Life",
+                hint = "Find your medical information and all your appointments information in one app."
             )
         )
         welcomeData.add(
             WelcomePage(
-                image = R.drawable.welcome_1,
-                title = "Easy Way to Get\n" +
-                        "Better Life",
-                hint = "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat."
+                image = R.drawable.welcome_2,
+                title = "Do Not Forget Your Appointments",
+                hint = "You will find all yours appointment in the app with its date and time."
             )
         )
         welcomeData.add(
             WelcomePage(
-                image = R.drawable.welcome_1,
-                title = "Easy Way to Get\n" +
-                        "Better Life",
-                hint = "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat."
+                image = R.drawable.welcome_3,
+                title = "Keep Your Health in the Top Priority",
+                hint = "Our app will help you to make your health as our priority."
             )
         )
         adapter = WelcomeAdapter(this, welcomeData)
