@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hadykahlout.doctory.databinding.ItemPastAppointmentBinding
-import com.hadykahlout.doctory.databinding.ItemRequestBinding
-import com.hadykahlout.doctory.model.patient.Appointment
+import com.hadykahlout.doctory.model.Appointment
 
 class PastAppointmentAdapter(val context: Context) :
     ListAdapter<Appointment, PastAppointmentAdapter.ViewHolder>(diffCallback) {

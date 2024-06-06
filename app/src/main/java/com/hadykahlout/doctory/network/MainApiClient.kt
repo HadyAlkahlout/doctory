@@ -6,6 +6,7 @@ import com.hadykahlout.doctory.model.api.doctor.AddSchedule
 import com.hadykahlout.doctory.model.api.doctor.UpdatePassword
 import com.hadykahlout.doctory.model.api.doctor.UpdateProfile
 import com.hadykahlout.doctory.model.api.response.APIResponse
+import com.hadykahlout.doctory.model.api.response.main.NotificationCount
 import com.hadykahlout.doctory.utils.SharedPrefsHelper
 import retrofit2.Response
 import retrofit2.http.*
@@ -53,6 +54,6 @@ interface MainApiClient {
     suspend fun countNotification(
         @Header("accept-language") lang: String = SharedPrefsHelper.getString(APP_LANGUAGE, "en"),
         @Header("Authorization") token: String = SharedPrefsHelper.getString(SERVER_TOKEN, "")
-    ): Response<APIResponse<Any>>
+    ): Response<APIResponse<NotificationCount>>
 
 }

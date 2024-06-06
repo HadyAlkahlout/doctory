@@ -87,7 +87,7 @@ class LoginFragment : Fragment() {
                     val gson = Gson()
                     val serverUser = gson.toJson(response.body()!!.data)
                     SharedPrefsHelper.save(SERVER_USER, serverUser)
-                    SharedPrefsHelper.save(SERVER_TOKEN, "bearer ${response.body()!!.data!!.accessToken}")
+                    SharedPrefsHelper.save(SERVER_TOKEN, "Bearer ${response.body()!!.data!!.accessToken}")
                     done()
                 } else {
                     Snackbar.make(

@@ -42,6 +42,10 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imgBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
         val user = SharedPrefsHelper.getServerUser()
 
         if (user.roleId == 3){

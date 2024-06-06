@@ -133,7 +133,7 @@ class VerifyFragment : Fragment() {
                     val gson = Gson()
                     val serverUser = gson.toJson(response.body()!!.data)
                     SharedPrefsHelper.save(SERVER_USER, serverUser)
-                    SharedPrefsHelper.save(SERVER_TOKEN, "bearer ${response.body()!!.data!!.accessToken}")
+                    SharedPrefsHelper.save(SERVER_TOKEN, "Bearer ${response.body()!!.data!!.accessToken}")
 
                     binding.llCode.visibility = View.GONE
                     binding.llSuccessful.visibility = View.VISIBLE

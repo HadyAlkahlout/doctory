@@ -13,6 +13,7 @@ import com.hadykahlout.doctory.adapter.NotificationsAdapter
 import com.hadykahlout.doctory.databinding.FragmentNotificationsBinding
 import com.hadykahlout.doctory.model.Notification
 import com.hadykahlout.doctory.ui.activity.DoctorActivity
+import com.hadykahlout.doctory.ui.activity.PatientActivity
 import com.hadykahlout.doctory.ui.dialog.LoadingDialog
 import com.hadykahlout.doctory.ui.fragment.main.MainViewModel
 
@@ -33,7 +34,11 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNotificationsBinding.inflate(layoutInflater)
-        (requireActivity() as DoctorActivity).binding.navView.visibility = View.GONE
+        if(requireArguments().getBoolean("isDoctor")) {
+            (requireActivity() as DoctorActivity).binding.navView.visibility = View.GONE
+        } else {
+            (requireActivity() as PatientActivity).binding.navView.visibility = View.GONE
+        }
         return binding.root
     }
 
@@ -106,7 +111,11 @@ class NotificationsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (requireActivity() as DoctorActivity).binding.navView.visibility = View.VISIBLE
+        if(requireArguments().getBoolean("isDoctor")) {
+            (requireActivity() as DoctorActivity).binding.navView.visibility = View.VISIBLE
+        } else {
+            (requireActivity() as PatientActivity).binding.navView.visibility = View.VISIBLE
+        }
     }
 
 }

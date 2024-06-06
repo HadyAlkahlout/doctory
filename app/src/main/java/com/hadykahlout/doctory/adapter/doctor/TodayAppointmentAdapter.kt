@@ -7,24 +7,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hadykahlout.doctory.databinding.ItemPatientAppointmentBinding
-import com.hadykahlout.doctory.model.doctor.PatientAppointment
+import com.hadykahlout.doctory.databinding.ItemTodayAppointmentBinding
+import com.hadykahlout.doctory.model.Appointment
 
-class PatientsAppointmentsAdapter(val context: Context) :
-    ListAdapter<PatientAppointment, PatientsAppointmentsAdapter.ViewHolder>(diffCallback) {
+class TodayAppointmentAdapter(val context: Context) :
+    ListAdapter<Appointment, TodayAppointmentAdapter.ViewHolder>(diffCallback) {
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<PatientAppointment>() {
+        private val diffCallback = object : DiffUtil.ItemCallback<Appointment>() {
             override fun areItemsTheSame(
-                oldItem: PatientAppointment,
-                newItem: PatientAppointment
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem === newItem // check if the items are the same. use the id if your model has one.
             }
 
             override fun areContentsTheSame(
-                oldItem: PatientAppointment,
-                newItem: PatientAppointment
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem == newItem
             }
@@ -33,7 +33,7 @@ class PatientsAppointmentsAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemPatientAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTodayAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -41,7 +41,7 @@ class PatientsAppointmentsAdapter(val context: Context) :
         holder.bind(position)
     }
 
-    inner class ViewHolder(private val binding: ItemPatientAppointmentBinding) :
+    inner class ViewHolder(private val binding: ItemTodayAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {

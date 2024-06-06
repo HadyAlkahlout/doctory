@@ -7,6 +7,7 @@ import com.hadykahlout.doctory.data.MainRepository
 import com.hadykahlout.doctory.model.api.response.APIResponse
 import com.hadykahlout.doctory.model.api.doctor.UpdatePassword
 import com.hadykahlout.doctory.model.api.doctor.UpdateProfile
+import com.hadykahlout.doctory.model.api.response.main.NotificationCount
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,7 +24,7 @@ class MainViewModel : ViewModel() {
     val updatePasswordData = MutableLiveData<Response<APIResponse<Any>>>()
     val updateProfileData = MutableLiveData<Response<APIResponse<Any>>>()
     val notificationData = MutableLiveData<Response<APIResponse<Any>>>()
-    val countNotificationData = MutableLiveData<Response<APIResponse<Any>>>()
+    val countNotificationData = MutableLiveData<Response<APIResponse<NotificationCount>>>()
 
     fun getAppointments(){
         viewModelScope.launch(Dispatchers.IO) {

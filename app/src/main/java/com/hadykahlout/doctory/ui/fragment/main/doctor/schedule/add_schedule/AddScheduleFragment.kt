@@ -91,8 +91,7 @@ class AddScheduleFragment : Fragment() {
         }
 
         binding.btnSave.setOnClickListener {
-            val successBottomSheet = SuccessBottomSheet()
-            successBottomSheet.show(requireActivity().supportFragmentManager, "Success")
+            addSchedule()
         }
 
         binding.cardTimeStart.setOnClickListener {
@@ -287,7 +286,8 @@ class AddScheduleFragment : Fragment() {
                         response.body()!!.message,
                         Snackbar.LENGTH_SHORT
                     ).show()
-                    findNavController().navigateUp()
+                    val successBottomSheet = SuccessBottomSheet()
+                    successBottomSheet.show(requireActivity().supportFragmentManager, "Success")
                 } else {
                     Snackbar.make(
                         requireView(),

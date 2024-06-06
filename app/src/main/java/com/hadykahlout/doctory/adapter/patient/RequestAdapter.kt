@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.adapter.doctor
+package com.hadykahlout.doctory.adapter.patient
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,28 +7,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hadykahlout.doctory.databinding.ItemScheduleBinding
-import com.hadykahlout.doctory.model.doctor.Schedule
+import com.hadykahlout.doctory.databinding.ItemRequestBinding
+import com.hadykahlout.doctory.model.Appointment
 
-class ScheduleAdapter(
+class RequestAdapter(
     val context: Context,
-    val onAccept: (book: Schedule) -> Unit,
-    val onReject: (book: Schedule) -> Unit,
+    val onCancel: (appointment: Appointment) -> Unit,
 ) :
-    ListAdapter<Schedule, ScheduleAdapter.ViewHolder>(diffCallback) {
+    ListAdapter<Appointment, RequestAdapter.ViewHolder>(diffCallback) {
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Schedule>() {
+        private val diffCallback = object : DiffUtil.ItemCallback<Appointment>() {
             override fun areItemsTheSame(
-                oldItem: Schedule,
-                newItem: Schedule
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem === newItem // check if the items are the same. use the id if your model has one.
             }
 
             override fun areContentsTheSame(
-                oldItem: Schedule,
-                newItem: Schedule
+                oldItem: Appointment,
+                newItem: Appointment
             ): Boolean {
                 return oldItem == newItem
             }
@@ -37,7 +36,7 @@ class ScheduleAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemRequestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -45,7 +44,7 @@ class ScheduleAdapter(
         holder.bind(position)
     }
 
-    inner class ViewHolder(private val binding: ItemScheduleBinding) :
+    inner class ViewHolder(private val binding: ItemRequestBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
@@ -54,21 +53,15 @@ class ScheduleAdapter(
                 Glide
                     .with(context)
                     .load(getItem(position).image)
-                    .into(binding.imgPatient)
+                    .into(binding.imgDoctor)
             }
             binding.tvName.text = getItem(position).name
             binding.tvCategory.text = getItem(position).category
-            binding.tvDayName.text = getItem(position).day
-            binding.tvDayNum.text = getItem(position).date
-            binding.tvMonthName.text = getItem(position).month
+            binding.tvDate.text = getItem(position).date
             binding.tvTime.text = getItem(position).time
 
-            binding.llAccept.setOnClickListener {
-                onAccept(getItem(position))
-            }
-
             binding.llReject.setOnClickListener {
-                onReject(getItem(position))
+                onCancel(getItem(position))
             }
         }
     }

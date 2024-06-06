@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
-import com.hadykahlout.doctory.adapter.patient.AppointmentAdapter
+import com.hadykahlout.doctory.adapter.patient.RequestAdapter
 import com.hadykahlout.doctory.adapter.patient.PastAppointmentAdapter
 import com.hadykahlout.doctory.databinding.FragmentAppointmentsBinding
-import com.hadykahlout.doctory.model.patient.Appointment
+import com.hadykahlout.doctory.model.Appointment
 import com.hadykahlout.doctory.ui.dialog.LoadingDialog
 import com.hadykahlout.doctory.ui.fragment.main.MainViewModel
 import com.hadykahlout.doctory.ui.fragment.main.patient.PatientViewModel
@@ -31,7 +32,7 @@ class AppointmentsFragment : Fragment() {
     }
     private val loading = LoadingDialog()
 
-    private lateinit var appointmentAdapter: AppointmentAdapter
+    private lateinit var requestAdapter: RequestAdapter
     private val allRequests = ArrayList<Appointment>()
 
     private lateinit var pastAppointmentAdapter: PastAppointmentAdapter
@@ -48,15 +49,30 @@ class AppointmentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        appointmentAdapter = AppointmentAdapter(requireContext()){ appointment ->
+        binding.cardNotifications.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putBoolean("isDoctor", false)
+            findNavController().navigate(R.id.notificationsFragment, bundle)
+        }
+
+        requestAdapter = RequestAdapter(requireContext()){ appointment ->
             // Cancel Request
             cancelAppointment(appointment.id)
         }
-        appointmentAdapter.submitList(allRequests)
+        requestAdapter.submitList(allRequests)
         binding.rcRequests.layoutManager = LinearLayoutManager(requireContext())
-        binding.rcRequests.adapter = appointmentAdapter
+        binding.rcRequests.adapter = requestAdapter
 
-        getAllRequests()
+//        getAllRequests()
+        allRequests.clear()
+
+        allRequests.add(
+            Appointment(0, "", "Sarah Bassam", "Backache", "Wed Jun 21", "8:30 AM", "Mon" , "08:00", "08:30")
+        )
+        allRequests.add(
+            Appointment(1, "", "Diana Bess", "Backache", "Wed Jun 21", "9:30 AM", "Tues", "09:00", "09:30")
+        )
+        getNotificationCount()
 
         pastAppointmentAdapter = PastAppointmentAdapter(requireContext())
         pastAppointmentAdapter.submitList(allRequests)
@@ -70,7 +86,15 @@ class AppointmentsFragment : Fragment() {
             binding.cardAllRequest.setCardBackgroundColor(requireActivity().getColor(android.R.color.transparent))
             binding.tvAllRequest.setTypeface(binding.tvPastAppointments.typeface, Typeface.NORMAL)
             binding.rcRequests.visibility = View.GONE
-            getPastAppointment()
+//            getPastAppointment()
+            pastAppointments.clear()
+
+            pastAppointments.add(
+                Appointment(0, "", "Sarah Bassam", "Backache", "Wed Jun 21", "8:30 AM",  "Mon" , "08:00", "08:30")
+            )
+            pastAppointments.add(
+                Appointment(1, "", "Diana Bess", "Backache", "Wed Jun 21", "8:30 AM",  "Tues", "09:00", "09:30")
+            )
         }
 
         binding.cardAllRequest.setOnClickListener {
@@ -80,7 +104,7 @@ class AppointmentsFragment : Fragment() {
             binding.cardPastAppointments.setCardBackgroundColor(requireActivity().getColor(android.R.color.transparent))
             binding.tvPastAppointments.setTypeface(binding.tvPastAppointments.typeface, Typeface.NORMAL)
             binding.rcPastAppointments.visibility = View.GONE
-            getAllRequests()
+//            getAllRequests()
         }
 
     }
@@ -125,15 +149,10 @@ class AppointmentsFragment : Fragment() {
                     pastAppointments.clear()
 
                     pastAppointments.add(
-                        Appointment(
-                            0, "", "Vandarani Aduhai", "Backache", "Wed Jun 21", "8:00 AM"
-                        )
+                        Appointment(0, "", "Sarah Bassam", "Backache", "8", "8:30", "Mon" , "08:00", "08:30")
                     )
-
                     pastAppointments.add(
-                        Appointment(
-                            1, "", "Vandarani Aduhai", "Backache", "Wed Jun 21", "8:00 AM"
-                        )
+                        Appointment(1, "", "Diana Bess", "Backache", "9", "9:30", "Tues", "09:00", "09:30")
                     )
 
                     pastAppointmentAdapter.notifyDataSetChanged()
@@ -171,18 +190,13 @@ class AppointmentsFragment : Fragment() {
                     allRequests.clear()
 
                     allRequests.add(
-                        Appointment(
-                            0, "", "Vandarani Aduhai", "Backache", "Wed Jun 21", "8:00 AM"
-                        )
+                        Appointment(0, "", "Sarah Bassam", "Backache", "8", "8:30", "Mon" , "08:00", "08:30")
                     )
-
                     allRequests.add(
-                        Appointment(
-                            1, "", "Vandarani Aduhai", "Backache", "Wed Jun 21", "8:00 AM"
-                        )
+                        Appointment(1, "", "Diana Bess", "Backache", "9", "9:30", "Tues", "09:00", "09:30")
                     )
 
-                    appointmentAdapter.notifyDataSetChanged()
+                    requestAdapter.notifyDataSetChanged()
                     binding.rcRequests.visibility = View.VISIBLE
                     binding.rcPastAppointments.visibility = View.GONE
                     binding.llEmptyData.visibility = View.GONE
@@ -202,6 +216,31 @@ class AppointmentsFragment : Fragment() {
                 ).show()
                 binding.rcRequests.visibility = View.GONE
                 binding.llEmptyData.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun getNotificationCount() {
+        viewModel.countNotification()
+        viewModel.countNotificationData.observe(viewLifecycleOwner){ response ->
+            if (response.body() != null) {
+                if (response.body()!!.status && response.body()!!.code in 200..299){
+                    // Here handel the request response
+
+                    if (response.body()!!.data!!.count == 0) {
+                        binding.cardCount.visibility = View.GONE
+                    } else {
+                        binding.cardCount.visibility = View.VISIBLE
+                    }
+
+                } else {
+                    binding.cardCount.visibility = View.GONE
+                }
+            } else {
+                Snackbar.make(
+                    requireView(),
+                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+                ).show()
             }
         }
     }

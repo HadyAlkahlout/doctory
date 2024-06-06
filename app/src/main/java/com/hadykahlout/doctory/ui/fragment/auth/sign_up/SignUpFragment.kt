@@ -131,7 +131,7 @@ class SignUpFragment : Fragment() {
             Log.e("TAG", "checkSignUp: etEmail error", )
             binding.usernameLayout.error = null
             binding.emailLayout.error = getString(R.string.required)
-        } else if (Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text!!.toString()).matches()) {
+        } else if (!(Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text!!.toString()).matches())) {
             Log.e("TAG", "checkSignUp: etEmail error", )
             binding.usernameLayout.error = null
             binding.emailLayout.error = "Invalid email!!"

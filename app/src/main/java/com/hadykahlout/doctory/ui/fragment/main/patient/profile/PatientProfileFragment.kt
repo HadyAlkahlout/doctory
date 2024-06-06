@@ -47,6 +47,10 @@ class PatientProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_patient_profile_to_insuranceFragment)
         }
 
+        binding.llSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_patient_profile_to_settingsFragment)
+        }
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.hadykahlout.doctory.adapter.patient
+package com.hadykahlout.doctory.adapter.doctor
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hadykahlout.doctory.databinding.ItemRequestBinding
-import com.hadykahlout.doctory.model.patient.Appointment
+import com.hadykahlout.doctory.databinding.ItemAppointmentBinding
+import com.hadykahlout.doctory.model.Appointment
 
 class AppointmentAdapter(
     val context: Context,
-    val onCancel: (appointment: Appointment) -> Unit,
+    val onAccept: (id: String) -> Unit,
+    val onReject: (id: String) -> Unit,
 ) :
     ListAdapter<Appointment, AppointmentAdapter.ViewHolder>(diffCallback) {
 
@@ -36,7 +37,7 @@ class AppointmentAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemRequestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -44,7 +45,7 @@ class AppointmentAdapter(
         holder.bind(position)
     }
 
-    inner class ViewHolder(private val binding: ItemRequestBinding) :
+    inner class ViewHolder(private val binding: ItemAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(position: Int) {
@@ -53,15 +54,20 @@ class AppointmentAdapter(
                 Glide
                     .with(context)
                     .load(getItem(position).image)
-                    .into(binding.imgDoctor)
+                    .into(binding.imgPatient)
             }
             binding.tvName.text = getItem(position).name
             binding.tvCategory.text = getItem(position).category
-            binding.tvDate.text = getItem(position).date
+            binding.tvDayName.text = getItem(position).day
+            binding.tvDayNum.text = getItem(position).date
             binding.tvTime.text = getItem(position).time
 
+            binding.llAccept.setOnClickListener {
+                onAccept(getItem(position).id.toString())
+            }
+
             binding.llReject.setOnClickListener {
-                onCancel(getItem(position))
+                onReject(getItem(position).id.toString())
             }
         }
     }

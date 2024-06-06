@@ -9,16 +9,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hadykahlout.doctory.R
-import com.hadykahlout.doctory.adapter.doctor.PatientsAppointmentsAdapter
+import com.hadykahlout.doctory.adapter.doctor.TodayAppointmentAdapter
 import com.hadykahlout.doctory.databinding.FragmentHomeBinding
-import com.hadykahlout.doctory.model.doctor.PatientAppointment
+import com.hadykahlout.doctory.model.Appointment
 import com.hadykahlout.doctory.ui.dialog.LoadingDialog
 import com.hadykahlout.doctory.ui.fragment.main.MainViewModel
 
 class HomeFragment : Fragment(){
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var patientsAppointmentsAdapter: PatientsAppointmentsAdapter
+    private lateinit var todayAppointmentsAdapter: TodayAppointmentAdapter
 
     private val viewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
@@ -38,36 +38,76 @@ class HomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardNotifications.setOnClickListener {
-            findNavController().navigate(R.id.notificationsFragment)
+            val bundle = Bundle()
+            bundle.putBoolean("isDoctor", true)
+            findNavController().navigate(R.id.notificationsFragment, bundle)
         }
         getAppointments()
+//        getNotificationCount()
         binding.tvTotalPatientTitle.text = "${binding.tvTotalPatientTitle.text} July"
 
     }
 
     private fun getAppointments() {
-        loading.show(requireActivity().supportFragmentManager, "Loading")
-        patientsAppointmentsAdapter = PatientsAppointmentsAdapter(requireContext())
+//        loading.show(requireActivity().supportFragmentManager, "Loading")
+        todayAppointmentsAdapter = TodayAppointmentAdapter(requireContext())
 
-        val patientsAppointments = ArrayList<PatientAppointment>()
+        val appointments = ArrayList<Appointment>()
 
-        viewModel.getAppointments()
-        viewModel.appointmentsData.observe(viewLifecycleOwner){ response ->
-            loading.dismiss()
+        appointments.add(
+            Appointment(0, "", "Sarah Bassam", "Backache", "8", "8:30", "Mon" , "08:00", "08:30")
+        )
+        appointments.add(
+            Appointment(1, "", "Diana Bess", "Backache", "9", "9:30", "Tues", "09:00", "09:30")
+        )
+
+//        viewModel.getAppointments()
+//        viewModel.appointmentsData.observe(viewLifecycleOwner){ response ->
+//            loading.dismiss()
+//            if (response.body() != null) {
+//                if (response.body()!!.status && response.body()!!.code in 200..299){
+//                    // Here handel the request response
+//
+//                    appointments.add(
+//                        Appointment(0, "", "Sarah Bassam", "Backache", "8:00", "8:30")
+//                    )
+//                    appointments.add(
+//                        Appointment(1, "", "Diana Bess", "Backache", "9:00", "9:30")
+//                    )
+//
+//                } else {
+//                    Snackbar.make(
+//                        requireView(),
+//                        response.body()!!.message, Snackbar.LENGTH_SHORT
+//                    ).show()
+//                }
+//            } else {
+//                Snackbar.make(
+//                    requireView(),
+//                    getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+
+        todayAppointmentsAdapter.submitList(appointments)
+        binding.rcPatients.adapter = todayAppointmentsAdapter
+    }
+
+    private fun getNotificationCount() {
+        viewModel.countNotification()
+        viewModel.countNotificationData.observe(viewLifecycleOwner){ response ->
             if (response.body() != null) {
                 if (response.body()!!.status && response.body()!!.code in 200..299){
                     // Here handel the request response
-                    patientsAppointments.add(
-                        PatientAppointment(0, "", "Sarah Bassam", "Backache", "8:00", "8:30")
-                    )
-                    patientsAppointments.add(
-                        PatientAppointment(1, "", "Diana Bess", "Backache", "9:00", "9:30")
-                    )
+
+                    if (response.body()!!.data!!.count == 0) {
+                        binding.cardCount.visibility = View.GONE
+                    } else {
+                        binding.cardCount.visibility = View.VISIBLE
+                    }
+
                 } else {
-                    Snackbar.make(
-                        requireView(),
-                        response.body()!!.message, Snackbar.LENGTH_SHORT
-                    ).show()
+                    binding.cardCount.visibility = View.GONE
                 }
             } else {
                 Snackbar.make(
@@ -76,8 +116,5 @@ class HomeFragment : Fragment(){
                 ).show()
             }
         }
-
-        patientsAppointmentsAdapter.submitList(patientsAppointments)
-        binding.rcPatients.adapter = patientsAppointmentsAdapter
     }
 }
