@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.home.HomeFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.ScheduleFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.schedule.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.ProfileFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -42,17 +42,17 @@
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.notification.NotificationsFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.notification.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/addScheduleFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.schedule.add_schedule.AddScheduleFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.schedule.add_schedule.AddScheduleFragment"
         android:label="fragment_add_schedule"
         tools:layout="@layout/fragment_add_schedule" />
     <fragment
         android:id="@+id/accountFragment2"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.account.AccountFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" >
         <action
@@ -61,12 +61,12 @@
     </fragment>
     <fragment
         android:id="@+id/editAccountFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.account.EditAccountFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.account.EditAccountFragment"
         android:label="fragment_edit_account"
         tools:layout="@layout/fragment_edit_account" />
     <fragment
         android:id="@+id/educationFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.education.EducationFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.education.EducationFragment"
         android:label="fragment_education"
         tools:layout="@layout/fragment_education" >
         <action
@@ -75,12 +75,12 @@
     </fragment>
     <fragment
         android:id="@+id/addEducationFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.education.AddEducationFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.education.AddEducationFragment"
         android:label="fragment_add_education"
         tools:layout="@layout/fragment_add_education" />
     <fragment
         android:id="@+id/medicalLicenseFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.license.MedicalLicenseFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.license.MedicalLicenseFragment"
         android:label="fragment_medical_license"
         tools:layout="@layout/fragment_medical_license" >
         <action
@@ -89,12 +89,12 @@
     </fragment>
     <fragment
         android:id="@+id/editLicenseFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.license.EditLicenseFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.license.EditLicenseFragment"
         android:label="fragment_edit_license"
         tools:layout="@layout/fragment_edit_license" />
     <fragment
         android:id="@+id/specialityListFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.speciality.SpecialityListFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.speciality.SpecialityListFragment"
         android:label="fragment_speciality_list"
         tools:layout="@layout/fragment_speciality_list" >
         <action
@@ -103,12 +103,12 @@
     </fragment>
     <fragment
         android:id="@+id/addSpecialityFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.speciality.AddSpecialityFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.speciality.AddSpecialityFragment"
         android:label="fragment_add_speciality"
         tools:layout="@layout/fragment_add_speciality" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.SettingsFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -129,27 +129,27 @@
     </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.ContactUsFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us" />
     <fragment
         android:id="@+id/privacyPolicyFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.PrivacyPolicyFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
         tools:layout="@layout/fragment_privacy_policy" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.AboutUsFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.AboutUsFragment"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/FAQFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.FAQFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.FAQFragment"
         android:label="fragment_faq"
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/legalFragment"
-        android:name="com.hadykahlout.doctory.ui.fragment.main.doctor.profile.settings.LegalFragment"
+        android:name="com.tweetso.doctory.ui.fragment.main.doctor.profile.settings.LegalFragment"
         android:label="fragment_legal"
         tools:layout="@layout/fragment_legal" />
 

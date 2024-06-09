@@ -3,15 +3,16 @@ import org.jetbrains.kotlin.js.inline.util.collectReferencedNames
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
     id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.hadykahlout.doctory"
+    namespace = "com.tweetso.doctory"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hadykahlout.doctory"
+        applicationId = "com.tweetso.doctory"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -65,6 +66,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     // Firebase messaging
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-messaging-ktx:24.0.0")
 
     // lottie
